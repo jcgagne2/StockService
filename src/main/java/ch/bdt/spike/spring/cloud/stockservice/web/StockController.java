@@ -55,6 +55,9 @@ public class StockController implements IStockService {
     @Override
     public StockPrice getStockPrice(@RequestParam(required = true) String symbol) {
         log.info("getStockPrice for symbol: " + symbol);
+        if ("BTC".equals(symbol)) {
+            throw new IllegalArgumentException("bitcoin pas accepté ici");
+        }
         return stockPrices.get(symbol.toUpperCase());
     }
 }
